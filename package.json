@@ -14,8 +14,7 @@
     "wrangler": "2.9.0"
   },
   "workspaces": [
-    "tgbot-worker",
-    "cron-tgbot-worker"
+    "tgbot-worker"
   ],
   "private": true
 }
