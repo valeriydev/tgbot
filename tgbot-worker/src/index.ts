@@ -1,12 +1,9 @@
+import {telegramAnswer} from "./types/types";
+
 export interface Env {
-    // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
-    // MY_KV_NAMESPACE: KVNamespace;
-    //
-    // Example binding to Durable Object. Learn more at https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
-    // MY_DURABLE_OBJECT: DurableObjectNamespace;
-    //
-    // Example binding to R2. Learn more at https://developers.cloudflare.com/workers/runtime-apis/r2/
-    // MY_BUCKET: R2Bucket;
+    BOT_TOKEN: string,
+    BOT_WEBHOOK: string,
+    kv_env: KVNamespace,
 }
 
 export default {
@@ -17,4 +14,21 @@ export default {
     ): Promise<Response> {
         return new Response("Answer: "+request);
     },
+
+    async scheduled(
+        request: Request,
+        env: Env,
+        ctx: ExecutionContext
+    ) {
+        await fetch(`https://api.telegram.org/bot${env.BOT_TOKEN}/setWebhook?url=${env.BOT_WEBHOOK}`);
+        const response: telegramAnswer = await fetch(`https://api.telegram.org/bot${env.BOT_TOKEN}/getWebhookInfo`).then((data) => {
+            return data.json();
+        });
+        await setKVValue(env, "tgbot-worker.BOT_WEBHOOK", response.result.url);
+    },
 };
+
+export async function setKVValue(env: any, kvKey:string, kvValue: string) {
+    await env.kv_env.put(kvKey, kvValue);
+}
+
