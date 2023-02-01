@@ -5,16 +5,38 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx wrangler dev",
-    "publish": "npx wrangler publish"
+    "publish": "npx wrangler publish",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
+    "eslint": "^8.33.0",
+    "husky": "^8.0.3",
+    "husky-init": "^8.0.0",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.3",
     "wrangler": "2.9.0"
   },
   "workspaces": [
     "tgbot-worker"
   ],
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint components/ pages/",
+      "prettier --write .",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "private": true
 }
