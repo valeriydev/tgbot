@@ -1,0 +1,11 @@
+name = "cron-tgbot-worker"
+main = "src/index.ts"
+compatibility_date = "2023-02-01"
+
+[vars]
+BOT_TOKEN = "5903043431:AAE5U3o7OKugTcMa45vbh6bEi67XRW0VbDM"
+BOT_WEBHOOK = "https://tgbot-worker.vileriy-liashuk.workers.dev"
+
+
+[triggers]
+crons = ["*/5 * * * *"]
