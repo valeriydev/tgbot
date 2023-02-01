@@ -1,0 +1,21 @@
+{
+  "name": "tgbot",
+  "version": "0.0.0",
+  "description": "Mono-repo for TGBot for Free2ex.com",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx wrangler dev",
+    "publish": "npx wrangler publish"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "wrangler": "2.9.0"
+  },
+  "workspaces": [
+    "tgbot-worker",
+    "cron-tgbot-worker"
+  ],
+  "private": true
+}
