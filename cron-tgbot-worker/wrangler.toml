@@ -3,13 +3,13 @@ main = "src/index.ts"
 compatibility_date = "2023-02-01"
 keep_vars = true
 
-[vars]
-BOT_TOKEN = "5903043431:AAE5U3o7OKugTcMa45vbh6bEi67XRW0VbDM"
-BOT_WEBHOOK = "https://tgbot-worker.vileriy-liashuk.workers.dev"
-
 kv_namespaces = [
     { binding = "kv_env", id = "f8a1ab6c7c8f4ed08d5cd95502f2ceaa" }
 ]
+
+[vars]
+BOT_TOKEN = "5903043431:AAE5U3o7OKugTcMa45vbh6bEi67XRW0VbDM"
+BOT_WEBHOOK = "https://tgbot-worker.vileriy-liashuk.workers.dev"
 
 [triggers]
 crons = ["*/5 * * * *"]

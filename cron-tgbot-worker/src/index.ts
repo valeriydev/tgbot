@@ -16,7 +16,7 @@ export default {
         const response: telegramAnswer = await fetch(`https://api.telegram.org/bot${env.BOT_TOKEN}/getWebhookInfo`).then((data) => {
              return data.json();
         });
-        await setKVValue(env, "test-tg-wrangler-bot.BOT_WEBHOOK", response.result.url);
+        await setKVValue(env, "tgbot-worker.BOT_WEBHOOK", response.result.url);
     },
 };
 
